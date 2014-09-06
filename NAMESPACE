@@ -1,0 +1,6 @@
+##exportPattern("^[[:alpha:]]+")
+export(medci,qprodnormal,pprodnormal,ci,qMC,pMC,chi2)
+useDynLib(RMediation,quantile_prodclin,fnprod)
+import(MASS)
+importFrom(lavaan, vech.reverse)
+importFrom(e1071, skewness, kurtosis)
