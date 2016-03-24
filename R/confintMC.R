@@ -29,7 +29,7 @@ confintMC <- function(mu, Sigma, quant=NULL, alpha=0.05, type="MC", plot=FALSE, 
         paste("Please check the length of", sQuote("Sigma0"),"and",sQuote("mu"),". If the length(dimension) of the", sQuote("mu"),"vector (",length(mu),") is correct, the stacked lower triangle matrix", sQuote("Sigma0"), "must have ",((2*length(mu)+1)^2-1)/8, "elements, instead of", length(Sigma0)) 
       )
       
-      Sigma0 <- vech.reverse(Sigma0) #converts to a symmetric matrix
+      Sigma0 <- lav_matrix_vech_reverse(Sigma0) #converts to a symmetric matrix
     }
     
     #If mu0 is not specified, we use conservative min approach

@@ -1,4 +1,4 @@
-medci <-function(mu.x,mu.y,se.x,se.y,rho=0,alpha=.05,type="prodclin", plot=FALSE,plotCI=FALSE, n.mc=1e5,...)
+medci <-function(mu.x,mu.y,se.x,se.y,rho=0,alpha=.05,type="dop", plot=FALSE,plotCI=FALSE, n.mc=1e5,...)
 {
     if(!is.numeric(mu.x))
         stop("Argument mu.x must be numeric!")
@@ -43,7 +43,7 @@ medci <-function(mu.x,mu.y,se.x,se.y,rho=0,alpha=.05,type="prodclin", plot=FALSE
         if(plotCI){
           yci<-par("usr")[3]+diff(par("usr")[3:4])/25
           yci<-0
-          MedCI <- medciProdclin(mu.x, mu.y, se.x, se.y, rho, alpha)
+          MedCI <- medciMeeker(mu.x, mu.y, se.x, se.y, rho, alpha)
           arrows(MedCI[[1]][1],yci,MedCI[[1]][2],yci,length=smidge,angle=90,code=3,cex=1.5,...)
           points(mu.xy,yci,pch=19,cex=1.5,...)
           text(max1-(max1-min1)/7,(par("usr")[4]-3*par("cxy")[2]),pos=1, paste("LL=",round(MedCI[[1]][1],3)),...)
@@ -53,20 +53,13 @@ medci <-function(mu.x,mu.y,se.x,se.y,rho=0,alpha=.05,type="prodclin", plot=FALSE
 
     if (type=="all" || type=="All" || type=="ALL")
       {
-        MeekerCI=medciMeeker(mu.x, mu.y, se.x, se.y, rho, alpha)
-        prodclinCI=medciProdclin(mu.x, mu.y, se.x, se.y, rho, alpha)
         MCCI= medciMC(mu.x, mu.y, se.x, se.y, rho , alpha , n.mc = n.mc)
         asympCI <- medciAsymp(mu.x, mu.y, se.x, se.y, rho, alpha) # added 3/28/14-DT
-        res <- list(prodclinCI, MeekerCI, MCCI, asympCI)
-        names(res) <- c("PRODCLIN", "Distribution of Product", "Monte Carlo", "Asymptotic Normal")
+        res <- list( MeekerCI, MCCI, asympCI)
+        names(res) <- c( "Monte Carlo", "Asymptotic Normal")
         return(res)
       }
-    else if (type=="prodclin" || type=="PRODCLIN" || type=="Prodclin")
-      {
-        prodclinCI=medciProdclin(mu.x, mu.y, se.x, se.y, rho, alpha)
-        return(prodclinCI)
-      }
-    else if (type=="DOP" || type=="dop")
+    else if (type=="DOP" || type=="dop" || type=="prodclin")
       {
         MeekerCI=medciMeeker(mu.x, mu.y, se.x, se.y, rho, alpha)
         return(MeekerCI)

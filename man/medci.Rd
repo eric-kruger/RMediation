@@ -10,7 +10,7 @@
   
 }
 \usage{
-medci(mu.x, mu.y, se.x, se.y, rho = 0, alpha = 0.05, type = "prodclin",
+medci(mu.x, mu.y, se.x, se.y, rho = 0, alpha = 0.05, type = "dop",
 plot=FALSE, plotCI=FALSE, n.mc = 1e+05, ...)
 }
 
@@ -29,7 +29,7 @@ plot=FALSE, plotCI=FALSE, n.mc = 1e+05, ...)
   \item{alpha}{ significance level for the confidence interval. The default value is .05.
   } 
   \item{type}{method used to compute confidence interval. It takes on
-    the values \code{"prodclin"} (default), \code{"DOP"},
+    the values \code{"dop"} (default),
     \code{"MC"}, \code{"asymp"} or \code{"all"}.
   }
   \item{plot}{ when \code{TRUE}, plots the distribution of \code{n.mc} data points
@@ -50,14 +50,11 @@ plot=FALSE, plotCI=FALSE, n.mc = 1e+05, ...)
   This function returns a (\eqn{1-\alpha})\% confidence interval for the
   mediated effect (product of two normal random variables). To obtain a confidence interval
   using a specific method, the argument \code{type} should be
-  specified. The default is \code{type="prodclin"}, which uses the PRODCLIN
-  program described by MacKinnon et al. (2007). \code{type="DOP"} uses the code we wrote in \R to
-  implement the distribution of product of the coefficients method. Note that both
-  \code{type="prodclin"} and \code{type="DOP"} use the method described
+  specified. The default is \code{type="dop"}, which uses the code we wrote in \R to
+  implement the distribution of product of the coefficients method described
   by Meeker and Escobar (1994) to evaluate the CDF of the distribution
   of product. \code{type="MC"} uses the Monte Carlo approach to compute
-  the confidence interval (Tofighi & MacKinnon, 2011). \code{type="asymp"} produces the asymptotic
-  normal confidence interval. Note that except for the Monte Carlo method, the standard error for the indirect effect is based on the analytical results by Craig (1936):
+  the confidence interval (Tofighi & MacKinnon, 2011). \code{type="asymp"} produces the asymptotic normal confidence interval. Note that except for the Monte Carlo method, the standard error for the indirect effect is based on the analytical results by Craig (1936):
   \deqn{\sqrt(se.y^2 \mu.x^2+se.x^2 \mu.y^2+2 \mu.x \mu.y \rho se.x se.y+ se.x^2 se.y^2+se.x^2 se.y^2 \rho^2) } 
   In addition, the estimate of indirect effect is \eqn{\mu.x\mu.y +\sigma.xy }; \code{type="all"} prints confidence intervals using all four options.
   %%  ~~ If necessary, more details than the description above ~~
@@ -92,7 +89,7 @@ results produced by each method as described above.
     Methods}, \bold{43}, 692--700. doi:10.3758/s13428-011-0076-x
 }
 \author{
-Davood Tofighi \email{dtofighi@psych.gatech.edu} and
+Davood Tofighi \email{dtofighi@unm.edu} and
   David P. MacKinnon \email{davidpm@asu.edu}
 
 }

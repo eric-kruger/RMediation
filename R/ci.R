@@ -29,7 +29,7 @@
 #' ci(c(b1=.3,b2=.4,b3=.3), c(.01,0,0,.01,0,.02), quant=~b1*b2*b3, type="mc", plot=TRUE, plotCI=TRUE, H0=TRUE, mu0=c(b1=.3,b2=.4,b3=0)  )
 #' #An Example of Less Conservative Null Sampling Distribution
 #' ci(c(b1=.3,b2=.4,b3=.3), c(.01,0,0,.01,0,.02), quant=~b1*b2*b3, type="mc", plot=TRUE, plotCI=TRUE, H0=TRUE, mu0=c(b1=0,b2=.4,b3=0.1)  )
-#' @author Davood Tofighi \email{dtofighi@@psych.gatech.edu} and David P. MacKinnon \email{davidpm@@asu.edu}
+#' @author Davood Tofighi \email{dtofighi@@gatech.edu} and David P. MacKinnon \email{davidpm@@asu.edu}
 #' @references  Tofighi, D. and MacKinnon, D. P. (2011). RMediation: An R package for mediation analysis confidence intervals. \emph{Behavior Research Methods}, \bold{43}, 692--700. doi:10.3758/s13428-011-0076-x
 #' @seealso \code{\link{medci}} \code{\link{RMediation-package}}
 
@@ -42,7 +42,7 @@ ci <- function(mu, Sigma, quant, alpha=0.05, type="MC", plot=FALSE, plotCI=FALSE
   if(is.null(Sigma)| missing(Sigma) ) stop(paste("argument",sQuote("Sigma"), "cannot be a NULL value"))
   if(!is.matrix(Sigma)){
   if(length(mu)!= (sqrt(1 + 8 * length(Sigma)) - 1)/2) stop(paste("Please check the length of", sQuote("Sigma"),"and",sQuote("mu"),". If the length(dimension) of the", sQuote("mu"),"vector (",length(mu),") is correct, the stacked lower triangle matrix", sQuote("Sigma"), "must have ",((2*length(mu)+1)^2-1)/8, "elements, instead of", length(Sigma)) )
-  Sigma <- vech.reverse(Sigma) #converts to a symmetric matrix
+  Sigma <- lav_matrix_vech_reverse(Sigma) #converts to a symmetric matrix
   }
   if(is.null(names(mu)) ) names(mu) <- paste("b",1:length(mu), sep="") # if mu names is NULL
 
@@ -50,7 +50,7 @@ ci <- function(mu, Sigma, quant, alpha=0.05, type="MC", plot=FALSE, plotCI=FALSE
   }
   else{
     fm1 <- mu
-    if(!fm1@Options$do.fit) fm1 <- update(mu, do.fit=TRUE) # If it's not fitted, refit.
+#    if(!fm1@Options[['do.fit']]) fm1 <- update(mu, do.fit=TRUE) # If it's not fitted, refit.
     pEstM1 <- coef(fm1) #parameter estimate
     name1 <- all.vars(quant)
     if(!all(name1 %in% names(pEstM1))) stop(paste("The parameters names in formula", sQuote("quant"), "must match the parameters names provided in lavaan object."))
