@@ -28,7 +28,7 @@ LazyLoad: \tab yes\cr
   Davood Tofighi \email{dtofighi@unm.edu} and
   David P. MacKinnon \email{davidpm@asu.edu}
   
-Maintainer: Davood Tofighi <dtofighi@unm.edu>
+Maintainer: Davood Tofighi \email{dtofighi@unm.edu}
 %~~ The author and/or maintainer of the package ~~
 }
 \references{
