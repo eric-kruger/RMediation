@@ -24,32 +24,36 @@ function(p, mu.x, mu.y, se.x, se.y, rho=0, lower.tail=TRUE){
     fx<-function(z){
     	return(integrate(gx,lower=-Inf,upper=Inf, z=z)$value-alpha)
     }
+    #converge <- TRUE
     p.l<-fx(l0)
     p.u<-fx(u0)
-    iter=0
+    iter <- 0
     while (p.l>0) {
         iter=iter+1
         l0=l0-0.5*se.ab
         p.l<-fx(l0)
         if (iter> max.iter )
             {
-                cat(" No initial valid lower bound interval!\n")
-                return(list(q=NA,error=NA))
+                stop("Numerical algorithm does not work in type='dop'! please use type='MC'.\n")
+                #return(list(q=NA,error=NA))
             }
     }
-    iter=0 #Reset iteration counter
+    
+    iter <- 0 #Reset iteration counter
     while (p.u<0) {
         iter=iter+1
         u0=u0+0.5*se.ab
         p.u<-fx(u0)
         if (iter> max.iter ){
-            cat(" No initial valid upper bound interval!\n")
-            return(list(q=NA,error=NA))
+            stop("Numerical algorithm does not work in type='dop'! please use type='MC'.\n")
+           # return(list(q=NA,error=NA))
         }
-   }
+    }
+    
     res<-uniroot(fx,c(l0,u0))
     new<-res$root
     new <- new*se.x*se.y
     error.new<-res$estim.prec
-    return(list(q=new,error=error.new))   #returns quantile corresponding to p
+    return(list(q=new,error=error.new))    #returns quantile corresponding to p
+    
 }
