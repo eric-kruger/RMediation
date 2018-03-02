@@ -1,8 +1,8 @@
 Package: RMediation
 Type: Package
 Title: Mediation Analysis Confidence Intervals
-Version: 1.1.5
-Date: 2016-4-8
+Version: 1.2.0
+Date: 2017-6-5
 Author: Davood Tofighi <dtofighi@unm.edu> and David P. MacKinnon
     <davidpm@asu.edu>
 Maintainer: Davood Tofighi <dtofighi@unm.edu>
@@ -19,6 +19,4 @@ Description: We provide functions to compute confidence
 License: GPL-2
 URL: https://amplab.shinyapps.io/MEDCI/
     https://amplab.shinyapps.io/MEDMC/
-RoxygenNote: 5.0.1
-
-
+RoxygenNote: 6.0.1

@@ -85,10 +85,6 @@ The PRODCLIN programs may be downloaded from
 
  
 }
-\author{
-Davood Tofighi \email{dtofighi@unm.edu} and David P. MacKinnon 
-  \email{davidpm@asu.edu}
-}
 \references{
 Craig, C. C. (1936). On the frequency function of \eqn{xy}. 
   \emph{The Annals of Mathematical Statistics}, \bold{7}, 1--15.
@@ -109,5 +105,8 @@ Craig, C. C. (1936). On the frequency function of \eqn{xy}.
 \code{\link{qprodnormal}} \code{\link{pprodnormal}} \code{\link{ci}}
   \code{\link{RMediation-package}}
 }
+\author{
+Davood Tofighi \email{dtofighi@unm.edu} and David P. MacKinnon 
+  \email{davidpm@asu.edu}
+}
 \keyword{mediation}
-

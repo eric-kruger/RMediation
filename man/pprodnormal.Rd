@@ -56,10 +56,6 @@ This function returns the percentile (probability) and the
 \examples{
 pprodnormal(q=0, mu.x=.5, mu.y=.3, se.x=1, se.y=1, rho= 0, type="all")
 }
-\author{
-Davood Tofighi \email{dtofighi@gatech.edu} and David P. MacKinnon 
-  \email{davidpm@asu.edu}
-}
 \references{
 Tofighi, D. and MacKinnon, D. P. (2011). RMediation: An R 
   package for mediation analysis confidence intervals. \emph{Behavior 
@@ -68,4 +64,7 @@ Tofighi, D. and MacKinnon, D. P. (2011). RMediation: An R
 \seealso{
 \code{\link{medci}} \code{\link{RMediation-package}}
 }
-
+\author{
+Davood Tofighi \email{dtofighi@gatech.edu} and David P. MacKinnon 
+  \email{davidpm@asu.edu}
+}
